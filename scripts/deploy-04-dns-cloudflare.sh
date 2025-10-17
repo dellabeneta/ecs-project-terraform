@@ -26,6 +26,7 @@ terraform init -reconfigure
 
 # Passa as variáveis para o Terraform e executa a ação
 VARS=(
+  -var="aws_profile=$AWS_PROFILE"
   -var="cloudflare_api_token=$CLOUDFLARE_API_TOKEN"
   -var="cloudflare_zone_id=$CLOUDFLARE_ZONE_ID"
   -var="domain_name=$CLOUDFLARE_DOMAIN_NAME"
