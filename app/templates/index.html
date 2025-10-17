@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pipoka</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    <meta name="author" content="Michel Dellabeneta">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Luckiest+Guy&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+            100% { transform: translateY(0); }
+        }
+
+        body {
+            /* Cor de fundo base: Manteiga Suave (clara) */
+            background-color: #FAEBBD; 
+            
+            /* Padrão de bolinhas de manteiga (dourado muito claro e sutil) */
+            background-image: radial-gradient(#FDD835 10%, transparent 10%),
+                              radial-gradient(#FDD835 10%, transparent 10%);
+            /* Tamanho e deslocamento das bolinhas */
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            
+            font-family: 'Kalam', cursive;
+            color: #333;
+        }
+
+        h1 {
+            font-family: 'Luckiest Guy', cursive; 
+            color: #E53935; 
+            font-size: 3.5em;
+            text-shadow: 
+                -2px -2px 0 #FFFFFF, 
+                2px -2px 0 #FFFFFF, 
+                -2px  2px 0 #FFFFFF, 
+                2px  2px 0 #FFFFFF, 
+                4px  4px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 5px;
+            letter-spacing: 3px;
+            animation: bounce 4s ease-in-out infinite alternate;
+        }
+        
+        h3 {
+            font-family: 'Luckiest Guy', cursive;
+            color: #FFD700; 
+            font-size: 2.5em;
+            padding-top: 15px;
+            font-weight: normal; 
+            margin-top: 0;
+            margin-bottom: 20px;
+            /* Sombra branca mais forte */
+            text-shadow: 
+            0 6px 36px #fff, 
+            0 0 32px #fff, 
+            0 0 16px #fff,
+            0 0 8px #fff;
+        }
+
+        img {
+            width: 300px; 
+            border-radius: 50%;
+            border: 5px solid white;
+                        
+            transition: transform 0.4s;
+        }
+        
+        img:hover {
+            transform: rotate(-360deg);
+        }
+    </style>
+</head>
+<body>
+    <center>
+
+        <h1> sou a pipoca e vim do container: </h1>
+        
+        <br> <img src="{{ url_for('static', filename='images/cat.png') }}" alt="Foto da gata Pipoca">
+        
+        <br> <br> <h3> {{ hostname }} </h3> 
+        
+    </center>
+</body>
+</html>
+
+

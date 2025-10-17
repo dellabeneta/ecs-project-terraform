@@ -1,0 +1,16 @@
+#!/bin/bash
+# Arquivo de configuração central para os scripts.
+
+# AÇÃO OBRIGATÓRIA:
+# Edite a linha abaixo com o nome do seu perfil AWS configurado no AWS CLI.
+export AWS_PROFILE="seu-perfil-aws-aqui"
+
+# --- Configurações do Cloudflare ---
+# Token de API com permissão para editar DNS da zona desejada.
+# export CLOUDFLARE_API_TOKEN="seu-token-aqui"
+
+# Zone ID do seu domínio no Cloudflare.
+# export CLOUDFLARE_ZONE_ID="seu-zone-id-aqui"
+
+# Nome do domínio principal que você está configurando (ex: seudominio.com).
+# export CLOUDFLARE_DOMAIN_NAME="seudominio.com"

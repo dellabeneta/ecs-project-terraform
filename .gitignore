@@ -1,0 +1,37 @@
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+
+
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Terraform
+# Ignora arquivos de estado e backups em qualquer pasta
+**/*.tfstate
+**/*.tfstate.*
+
+# Ignora logs de erro e planos de execução
+**/crash.log
+**/*.tfplan
+**/*.binary
+
+# Ignora diretórios e arquivos de lock do provedor
+**/.terraform/
+**/.terraform.lock.hcl
+
+# Infracost
+infracost-output.json
+report.html
+
+# Configurações locais
+scripts/config.sh

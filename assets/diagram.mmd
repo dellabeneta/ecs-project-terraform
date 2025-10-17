@@ -1,0 +1,78 @@
+graph TD
+    %% --- Styling Classes ---
+    classDef user fill:#D1E8FF,stroke:#0062B3,stroke-width:2px;
+    classDef network fill:#FFE6CC,stroke:#D17F28,stroke-width:2px;
+    classDef compute fill:#E3F2FD,stroke:#2196F3,stroke-width:2px;
+    classDef orchestration fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px;
+    classDef storage fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px;
+    classDef cloudflare fill:#FFDDC1,stroke:#F48120,stroke-width:2px;
+
+    %% --- Atores Externos ---
+    User["fa:fa-user End User"]:::user
+
+    subgraph "Cloudflare"
+        direction LR
+        DNS_EC2["ec2.seu_dominio.com"]:::cloudflare
+        DNS_Fargate["fargate.seu_dominio.com"]:::cloudflare
+    end
+
+    subgraph "AWS Cloud"
+        subgraph "Shared Services"
+            ECR["fa:fa-database ECR Repository"]:::storage
+        end
+
+        subgraph "VPC"
+            subgraph "Public Subnets"
+                direction LR
+                ALB_EC2["ALB (EC2)"]:::network
+                ALB_Fargate["ALB (Fargate)"]:::network
+                NAT["fa:fa-route NAT Gateway"]:::network
+                IGW["fa:fa-globe-americas Internet Gateway"]:::network
+            end
+
+            subgraph "Private Subnets"
+                subgraph "EC2 Deployment"
+                    direction TB
+                    Cluster_EC2["ECS Cluster"]:::orchestration
+                    ASG["fa:fa-clone Auto Scaling Group"]:::compute
+                    Cluster_EC2 --> ASG
+                    subgraph ASG
+                        EC2_Instance["fa:fa-server EC2 Instance"] --> Task_EC2["fa:fa-box ECS Task"]
+                    end
+                end
+
+                subgraph "Fargate Deployment"
+                    direction TB
+                    Cluster_Fargate["ECS Cluster"]:::orchestration
+                    Service_Fargate["fa:fa-cogs ECS Service"]:::compute
+                    Cluster_Fargate --> Service_Fargate
+                    subgraph Service_Fargate
+                       Task_Fargate["fa:fa-box Fargate Task"]
+                    end
+                end
+            end
+        end
+    end
+
+    %% --- Fluxo de Conexões ---
+    User -- "HTTPS" --> DNS_EC2
+    User -- "HTTPS" --> DNS_Fargate
+
+    DNS_EC2 -- "Proxied Traffic" --> ALB_EC2
+    DNS_Fargate -- "Proxied Traffic" --> ALB_Fargate
+
+    ALB_EC2 -- "Port 80" --> Task_EC2
+    ALB_Fargate -- "Port 80" --> Task_Fargate
+
+    ALB_EC2 -- "Public Facing" --> IGW
+    ALB_Fargate -- "Public Facing" --> IGW
+
+    Task_EC2 -- "Pull Image" --> NAT
+    Task_Fargate -- "Pull Image" --> NAT
+    NAT -- "Outbound Internet" --> IGW
+    IGW --> ECR
+
+    %% --- Estilo dos Links ---
+    linkStyle 0,1,2,3 stroke:#0062B3,stroke-width:2px;
+    linkStyle 4,5 stroke:#D17F28,stroke-width:2px;
+    linkStyle 6,7,8,9,10,11 stroke:#4CAF50,stroke-width:2px,stroke-dasharray: 3 3;

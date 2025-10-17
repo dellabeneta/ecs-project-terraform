@@ -1,0 +1,5 @@
+# Ignora tudo que está no contexto do build
+**
+
+# Exceto a pasta da aplicação, que é o que precisamos
+!app/

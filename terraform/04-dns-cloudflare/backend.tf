@@ -1,0 +1,9 @@
+
+terraform {
+  backend "s3" {
+    bucket         = "ecs-project-demo-tfstate"
+    key            = "dns-cloudflare/terraform.tfstate"
+    region         = "us-east-2"
+    dynamodb_table = "ecs-project-demo-tf-lock-table"
+  }
+}
