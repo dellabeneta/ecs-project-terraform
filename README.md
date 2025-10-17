@@ -1,4 +1,4 @@
-# Arquitetura de Referência para AWS ECS: Deploy Híbrido (EC2 & Fargate) com Terraform e Cloudflare
+# Arquitetura para AWS ECS: Deploy Híbrido (EC2 & Fargate) + Cloudflare com Terraform. 
 
 ![Banner](./assets/banner.jpg)
 
