@@ -32,6 +32,7 @@ env/
 # Infracost
 infracost-output.json
 report.html
+**/.infracost
 
 # Configurações locais
 scripts/config.sh

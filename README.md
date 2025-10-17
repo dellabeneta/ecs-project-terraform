@@ -176,3 +176,7 @@ Os mesmos scripts de deploy podem ser usados com o argumento `destroy`.
 O arquivo `nuke.sh` na raiz do projeto é um script de conveniência **opcional** para uma limpeza **totalmente local** do seu ambiente Docker.
 
 **Atenção:** Este script **NÃO** interage com a AWS. Ele apenas remove **TODOS** os containers, imagens, volumes e redes do seu Docker local. É útil caso seu ambiente fique poluído após muitos builds e testes. Use com cuidado.
+
+## Custos
+
+Para entender e estimar os custos da infraestrutura provisionada por este projeto, consulte a documentação detalhada em [COST.md](COST.md). Lá você encontrará instruções sobre como usar a ferramenta Infracost para gerar estimativas por camada.
